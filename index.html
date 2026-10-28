@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kairos ご提案｜ホテル・宿泊施設 ランディングページ制作</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:#10192A;
+    --navy:#1B2A3F;
+    --gold:#C8A24D;
+    --gold-soft:#E4CE94;
+    --cream:#F6F1E6;
+    --sage:#8A9A8E;
+    --line:rgba(200,162,77,0.25);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    background:var(--cream);
+    color:var(--navy-deep);
+    line-height:1.9;
+    font-weight:300;
+    letter-spacing:0.02em;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Shippori Mincho',serif;
+    letter-spacing:0.06em;
+  }
+  .wrap{
+    max-width:1040px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 92%, rgba(200,162,77,0.18) 0%, rgba(200,162,77,0) 70%),
+      linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 55%, #0C1320 100%);
+    color:var(--cream);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:120px 20px 80px;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    top:14%;
+    left:50%;
+    transform:translateX(-50%);
+    width:380px;
+    height:380px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(228,206,148,0.35) 0%, rgba(228,206,148,0.08) 45%, rgba(228,206,148,0) 72%);
+    filter:blur(2px);
+    pointer-events:none;
+  }
+  .hero .window{
+    position:absolute;
+    bottom:-10%;
+    right:-6%;
+    width:420px;
+    height:620px;
+    opacity:0.5;
+  }
+  .window .frame{
+    position:absolute;
+    inset:0;
+    border:1px solid var(--line);
+    background:linear-gradient(200deg, rgba(200,162,77,0.08), rgba(200,162,77,0) 60%);
+  }
+  .window .bar-h{position:absolute;left:0;right:0;top:50%;height:1px;background:var(--line);}
+  .window .bar-v{position:absolute;top:0;bottom:0;left:33.3%;width:1px;background:var(--line);}
+  .window .bar-v2{position:absolute;top:0;bottom:0;left:66.6%;width:1px;background:var(--line);}
+
+  .hero-tag{
+    position:relative;
+    z-index:2;
+    font-size:12px;
+    letter-spacing:0.35em;
+    color:var(--gold-soft);
+    text-transform:uppercase;
+    margin-bottom:28px;
+    border:1px solid var(--line);
+    padding:8px 20px;
+    border-radius:999px;
+  }
+  .hero h1{
+    position:relative;
+    z-index:2;
+    font-size:clamp(32px,5.6vw,58px);
+    font-weight:600;
+    line-height:1.55;
+    margin-bottom:28px;
+  }
+  .hero h1 span{color:var(--gold-soft);}
+  .hero p.lead{
+    position:relative;
+    z-index:2;
+    font-size:15px;
+    color:#CBD3DD;
+    max-width:520px;
+    margin:0 auto 46px;
+  }
+  .hero .from{
+    position:relative;
+    z-index:2;
+    font-size:13px;
+    letter-spacing:0.12em;
+    color:var(--sage);
+  }
+  .hero .from strong{color:var(--gold);font-weight:500;}
+
+  .scroll-hint{
+    position:absolute;
+    bottom:30px;
+    left:50%;
+    transform:translateX(-50%);
+    width:1px;
+    height:46px;
+    background:linear-gradient(180deg, var(--gold) 0%, transparent 100%);
+  }
+
+  /* ===== SECTION 共通 ===== */
+  section{
+    padding:110px 0;
+    position:relative;
+  }
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:0.3em;
+    color:var(--gold);
+    text-transform:uppercase;
+    margin-bottom:18px;
+    display:block;
+  }
+  .sec-title{
+    font-size:clamp(24px,3.4vw,36px);
+    font-weight:600;
+    color:var(--navy-deep);
+    margin-bottom:28px;
+  }
+  .sec-title b{color:var(--gold);font-weight:600;}
+
+  /* ===== 理解セクション ===== */
+  .understand{
+    background:var(--navy-deep);
+    color:var(--cream);
+  }
+  .understand .eyebrow{color:var(--gold-soft);}
+  .understand .sec-title{color:var(--cream);}
+  .understand-grid{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:60px;
+    align-items:center;
+  }
+  .understand p{
+    color:#D6DBE3;
+    font-size:15px;
+    margin-bottom:18px;
+  }
+  .quote-card{
+    background:linear-gradient(160deg, rgba(200,162,77,0.1), rgba(200,162,77,0.02));
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:36px 32px;
+    font-family:'Shippori Mincho',serif;
+    font-size:19px;
+    line-height:2;
+    color:var(--gold-soft);
+    position:relative;
+  }
+  .quote-card::before{
+    content:"“";
+    position:absolute;
+    top:-6px;
+    left:18px;
+    font-size:60px;
+    color:var(--gold);
+    opacity:0.5;
+    font-family:serif;
+  }
+
+  /* ===== 価値セクション ===== */
+  .values{background:var(--cream);}
+  .value-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+    margin-top:50px;
+  }
+  .value-card{
+    background:#fff;
+    border:1px solid #E6DEC9;
+    border-top:3px solid var(--gold);
+    padding:34px 26px;
+    border-radius:2px;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .value-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 34px rgba(27,42,63,0.08);
+  }
+  .value-num{
+    font-family:'Shippori Mincho',serif;
+    font-size:13px;
+    color:var(--gold);
+    letter-spacing:0.2em;
+    margin-bottom:14px;
+    display:block;
+  }
+  .value-card h3{
+    font-size:18px;
+    margin-bottom:12px;
+    color:var(--navy-deep);
+    font-weight:600;
+  }
+  .value-card p{
+    font-size:13.5px;
+    color:#51606E;
+  }
+
+  /* ===== スケジュール ===== */
+  .flow{
+    background:var(--navy);
+    color:var(--cream);
+  }
+  .flow .eyebrow{color:var(--gold-soft);}
+  .flow .sec-title{color:var(--cream);}
+  .timeline{
+    margin-top:50px;
+    position:relative;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left:22px;
+    top:10px;
+    bottom:10px;
+    width:1px;
+    background:linear-gradient(180deg, var(--gold) 0%, rgba(200,162,77,0.1) 100%);
+  }
+  .tl-item{
+    position:relative;
+    padding:0 0 46px 66px;
+  }
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-dot{
+    position:absolute;
+    left:12px;
+    top:2px;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    background:var(--navy-deep);
+    border:2px solid var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Shippori Mincho',serif;
+    font-size:11px;
+    color:var(--gold-soft);
+  }
+  .tl-item h3{
+    font-size:17px;
+    color:var(--gold-soft);
+    margin-bottom:8px;
+    font-weight:600;
+  }
+  .tl-item p{
+    font-size:13.5px;
+    color:#C9D1DB;
+  }
+  .tl-week{
+    display:inline-block;
+    font-size:11px;
+    letter-spacing:0.1em;
+    color:var(--sage);
+    margin-bottom:6px;
+  }
+
+  /* ===== closing ===== */
+  .closing{
+    background:
+      radial-gradient(ellipse 60% 60% at 50% 0%, rgba(200,162,77,0.15), rgba(200,162,77,0) 60%),
+      var(--cream);
+    text-align:center;
+  }
+  .closing .eyebrow{color:var(--gold);}
+  .closing h2{
+    font-size:clamp(26px,4vw,40px);
+    font-weight:600;
+    margin-bottom:22px;
+    color:var(--navy-deep);
+  }
+  .closing p{
+    max-width:520px;
+    margin:0 auto 42px;
+    font-size:14.5px;
+    color:#51606E;
+  }
+  .cta-btn{
+    display:inline-block;
+    background:var(--navy-deep);
+    color:var(--gold-soft);
+    padding:18px 48px;
+    font-size:14px;
+    letter-spacing:0.18em;
+    border:1px solid var(--navy-deep);
+    position:relative;
+    transition:all .3s ease;
+  }
+  .cta-btn:hover{
+    background:transparent;
+    color:var(--navy-deep);
+  }
+  .meta-box{
+    margin-top:60px;
+    display:flex;
+    justify-content:center;
+    gap:50px;
+    flex-wrap:wrap;
+  }
+  .meta-box div{
+    text-align:center;
+  }
+  .meta-box .m-label{
+    font-size:11px;
+    letter-spacing:0.2em;
+    color:var(--sage);
+    display:block;
+    margin-bottom:6px;
+  }
+  .meta-box .m-value{
+    font-family:'Shippori Mincho',serif;
+    font-size:20px;
+    color:var(--navy-deep);
+  }
+
+  footer{
+    background:var(--navy-deep);
+    color:#7C8899;
+    text-align:center;
+    padding:34px 20px;
+    font-size:12px;
+    letter-spacing:0.08em;
+  }
+  footer strong{color:var(--gold-soft);}
+
+  @media (max-width:860px){
+    .understand-grid{grid-template-columns:1fr;gap:36px;}
+    .value-grid{grid-template-columns:1fr 1fr;}
+    .hero .window{display:none;}
+  }
+  @media (max-width:560px){
+    section{padding:76px 0;}
+    .value-grid{grid-template-columns:1fr;}
+    .meta-box{gap:30px;}
+    .hero{padding:110px 16px 60px;}
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="window">
+    <div class="frame"></div>
+    <div class="bar-h"></div>
+    <div class="bar-v"></div>
+    <div class="bar-v2"></div>
+  </div>
+  <span class="hero-tag">Proposal from Kairos</span>
+  <h1>写真の数より、<br><span>灯りの質</span>が、宿を選ばせる。</h1>
+  <p class="lead">
+    ホテル・宿泊施設のランディングページ制作のご依頼を拝見し、
+    Kairosとしてご提案させていただきます。
+    素材はすでにお持ちです。足りないのは、それを「泊まりたい」へ翻訳する設計です。
+  </p>
+  <p class="from">Web制作・システム開発チーム <strong>Kairos</strong> より</p>
+  <div class="scroll-hint"></div>
+</section>
+
+<section class="understand">
+  <div class="wrap understand-grid">
+    <div>
+      <span class="eyebrow">Understanding</span>
+      <h2 class="sec-title">この募集文から、<br>私たちが読み取ったこと</h2>
+      <p>
+        「施設の雰囲気やサービスの魅力が伝わり、見た方が“ここに泊まってみたい”と感じられるページ」。
+        これは単なるデザインの好みの話ではなく、情報の順番・余白・写真の見せ方で結果が変わる、
+        設計の問題だと考えています。
+      </p>
+      <p>
+        すでに文章や写真といった素材はお手元にある状態。
+        つまり必要なのは「素材を作ること」ではなく、「素材を活かす器を作ること」。
+        シンプルで清潔感がありながら、スマホでも予約導線が迷わない構成にする――
+        その両立こそが今回の提案の核だと理解しています。
+      </p>
+    </div>
+    <div class="quote-card">
+      素材はある。言葉もある。<br>
+      あとは、それを見た人の中で<br>
+      「今夜はここに泊まろう」という<br>
+      小さな決断に変える、<br>
+      一本の筋道だけだと思います。
+    </div>
+  </div>
+</section>
+
+<section class="values">
+  <div class="wrap">
+    <span class="eyebrow">What Kairos Offers</span>
+    <h2 class="sec-title">Kairosが<b>ご提供</b>できること</h2>
+    <div class="value-grid">
+      <div class="value-card">
+        <span class="value-num">01</span>
+        <h3>宿泊体験を軸にした構成設計</h3>
+        <p>チェックイン前の期待感から予約ボタンまで、訪問者の心理の流れに沿ってセクションを組み立てます。</p>
+      </div>
+      <div class="value-card">
+        <span class="value-num">02</span>
+        <h3>写真を最大限活かすレイアウト</h3>
+        <p>お送りいただく施設写真の余白・トリミング・配置を調整し、雰囲気が伝わる見せ方に仕上げます。</p>
+      </div>
+      <div class="value-card">
+        <span class="value-num">03</span>
+        <h3>予約導線を意識したプラン紹介</h3>
+        <p>宿泊プランやサービス情報を比較しやすく整理し、迷わず「予約する」へ進める構成にします。</p>
+      </div>
+      <div class="value-card">
+        <span class="value-num">04</span>
+        <h3>スマホ表示の細部までの調整</h3>
+        <p>多くの旅行検討者がスマホから訪れることを前提に、タップしやすいボタン配置・文字量で設計します。</p>
+      </div>
+      <div class="value-card">
+        <span class="value-num">05</span>
+        <h3>相談しながら進める柔軟な対応</h3>
+        <p>デザインや見せ方は一方的に決めず、オンラインでの対話を重ねながら方向性をすり合わせます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="flow">
+  <div class="wrap">
+    <span class="eyebrow">Process</span>
+    <h2 class="sec-title">進め方とスケジュールの目安</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot">1</div>
+        <span class="tl-week">Day 1-3</span>
+        <h3>オンライン面談・方向性のすり合わせ</h3>
+        <p>施設の魅力、ターゲットとなる宿泊者像、素材の共有方法などを対話形式で確認します。</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">2</div>
+        <span class="tl-week">Week 1</span>
+        <h3>構成案・デザインラフの作成</h3>
+        <p>ページ全体の流れとトーン＆マナーをご提示し、イメージのズレがないかすり合わせます。</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">3</div>
+        <span class="tl-week">Week 2</span>
+        <h3>デザイン制作・コーディング</h3>
+        <p>写真やテキストを反映しながらページを制作。スマホ表示の確認もこの段階で行います。</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">4</div>
+        <span class="tl-week">Week 2-3</span>
+        <h3>確認・軽微な修正・納品</h3>
+        <p>実際の見え方を確認いただきながら調整を行い、2〜3週間程度を目安に納品いたします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <span class="eyebrow">Next Step</span>
+    <h2>まずはお気軽に、<br>オンラインでお話しさせてください</h2>
+    <p>
+      勧誘や売り込みは一切ございません。
+      素材の状態や公開時期など、ざっくばらんな状態からのご相談も歓迎です。
+      丁寧なコミュニケーションを大切に、安心して進められる制作をお約束します。
+    </p>
+    <a href="#" class="cta-btn">応募フォームへ進む</a>
+    <div class="meta-box">
+      <div>
+        <span class="m-label">BUDGET</span>
+        <span class="m-value">¥30,000〜50,000</span>
+      </div>
+      <div>
+        <span class="m-label">DURATION</span>
+        <span class="m-value">2〜3週間</span>
+      </div>
+      <div>
+        <span class="m-label">CLIENT</span>
+        <span class="m-value">VALUE B 様</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Proposal by <strong>Kairos</strong> — Web制作・システム開発チーム
+</footer>
+
+</body>
+</html>
